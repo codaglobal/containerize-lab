@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sclab
+  labels:
+    app: sclab
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sclab
+  template:
+    metadata:
+      labels:
+        app: sclab
+    spec:
+      containers:
+      - name: sclab
+        image: new-repo:version
+        ports:
+        - containerPort: 3000
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: sclab
+spec:
+  selector:
+    app: sclab
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+  type: NodePort
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: sclab
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /sclab
+        backend:
+          serviceName: sclab
+          servicePort: 3000

@@ -79,3 +79,6 @@ typings/
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
 ._*
+
+# Project Specific
+secrets-cfgmaps/deploy.yml

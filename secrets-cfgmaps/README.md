@@ -91,3 +91,8 @@ This lab consists of an application which uses a configuration file to pass para
             configMap:
                 name: sclab
     ```
+
+## ToDo
+
+* Add secret exercise
+* Config change after adopting the ConfigMap

@@ -96,3 +96,5 @@ This lab consists of an application which uses a configuration file to pass para
 
 * Add secret exercise
 * Config change after adopting the ConfigMap
+* Specify resources to container spec for ConfigMap unit
+* Change ConfigMap unit example app version number to be config version in UI

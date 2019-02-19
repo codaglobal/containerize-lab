@@ -4,6 +4,7 @@ metadata:
   name: sclab
   labels:
     app: sclab
+    version: 1.0.0
 spec:
   replicas: 3
   selector:
@@ -13,6 +14,7 @@ spec:
     metadata:
       labels:
         app: sclab
+        version: 1.0.0
     spec:
       containers:
       - name: sclab

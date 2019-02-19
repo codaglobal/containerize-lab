@@ -17,8 +17,16 @@ spec:
       containers:
       - name: sclab
         image: new-repo:version
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
 ---
 kind: Service
 apiVersion: v1

@@ -97,11 +97,23 @@ This lab consists of an application which uses a configuration file to pass para
           name: scapp-config
     ```
 
-8. Create a Kubernetes Secret using literal strings
+8. Now that config.json in the container is using a ConfigMap, it can be updated via kubernetes.
 
-   `kubectl create secret generic scapp-secret --from-literal=username='user1' --from-literal=password='$uper$3cret'`
+    `kubectl edit configmap scapp-config`
 
-9. Modify the Deployment to use the Secret as environment variables.
+9. Since our app doesn't automatically pickup changes to the config.json file, we'll have to confirm the file updated by connecting to one of the Pods and reading the file
+    > Note: If an app watches for changes to the file it would be picked up automatically.  You could also manually force the app to pick up the change by deleting the Pods.  In doing so, the Deployment will start new Pods which will read the new config.json file.
+
+    ```bash
+    export SCAPP_POD=$(kubectl get pods -o jsonpath='{.items[0].metadata.name}')
+    kubectl exec -it $SCAPP_POD -- cat /home/node/scapp/cfg/config.json
+    ```
+
+10. Create a Kubernetes Secret using literal strings
+
+    `kubectl create secret generic scapp-secret --from-literal=username='user1' --from-literal=password='$uper$3cret'`
+
+11. Modify the Deployment to use the Secret as environment variables.
 
     ```yaml
     spec:
@@ -166,7 +178,7 @@ This lab consists of an application which uses a configuration file to pass para
           name: scapp-config
     ```
 
-10. To confirm, you'll need to run a command in one of the pods
+12. To confirm, you'll need to run a command in one of the pods
     ```bash
     export SCAPP_POD=$(kubectl get pods -o jsonpath='{.items[0].metadata.name}')
     kubectl exec -it $SCAPP_POD -- env | grep SCAPP
@@ -174,6 +186,5 @@ This lab consists of an application which uses a configuration file to pass para
 Note: both ConfigMaps and Secrets are able to be mounted as Volumes or Environment Variables.  
 
 ## ToDo
-* Config change after adopting the ConfigMap
 * Specify resources to container spec for ConfigMap unit
 * Change ConfigMap unit example app version number to be config version in UI

@@ -90,7 +90,7 @@ This lab consists of an application which uses a configuration file to pass para
         - containerPort: 3000
         volumeMounts:
         - name: config
-          mountPath: /home/node/scapp/cfg/
+          mountPath: /config/
       volumes:
       - name: config
         configMap:
@@ -187,4 +187,3 @@ Note: both ConfigMaps and Secrets are able to be mounted as Volumes or Environme
 
 ## ToDo
 * Specify resources to container spec for ConfigMap unit
-* Change ConfigMap unit example app version number to be config version in UI

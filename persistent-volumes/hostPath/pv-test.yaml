@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pv-test
+spec:
+  containers:
+  - image: busybox
+    name: pv-test
+    args:
+    - sleep
+    - "300"
+    volumeMounts:
+    - name: data
+      mountPath: /data
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: k8s-lab-data
+  restartPolicy: Never

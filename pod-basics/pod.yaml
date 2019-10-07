@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: podlab
+  name: podlab
+  namespace: podlab
+spec:
+  containers:
+    - image: dgreenstein/lab1:1.0.0
+      imagePullPolicy: Always
+      name: podlab
+      ports:
+        - containerPort: 80
+          protocol: TCP
+      resources:
+        limits:
+          cpu: 500m
+          memory: 256Mi
+        requests:
+          cpu: 250m
+          memory: 128Mi

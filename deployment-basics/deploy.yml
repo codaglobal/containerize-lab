@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploylab
+  labels:
+    app: deploylab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deploylab
+  template:
+    metadata:
+      labels:
+        app: deploylab
+    spec:
+      containers:
+        - name: deploylab
+          image: dgreenstein/lab1:1.0.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: deploylab
+spec:
+  selector:
+    app: deploylab
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: deploylab
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /deploylab
+            backend:
+              serviceName: deploylab
+              servicePort: 80

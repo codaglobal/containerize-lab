@@ -21,3 +21,4 @@ The basics labs are intended to give you an entry-level understanding of core co
 Additional labs are focused on more complex ideas, and expect you to have the fundamental knowledge provided in the basics labs.  These can be done in any order.
 
 - secrets-cfgmaps - Intro to dynamic application configuration with Kubernetes native elements configMap and secret.
+- persistent-volumes - Intro to persistent volumes using Kubernetes hostPath provider

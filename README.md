@@ -17,6 +17,7 @@ The basics labs are intended to give you an entry-level understanding of core co
 1. container-basics - this will show you how to run code you write in a container.
 2. pod-basics - a Pod is one of the fundamental objects in Kubernetes, and this exercise will bridge understanding from container to Pod.
 3. deployment-basics - on its own, a Pod only runs a contianer once.  Making your application resilient and self-healing requires something more, and this lab walks you through that.
+4. namespace-basics - Several Kubernetes resources (such as Pods and Deployments) run in namespaces in which the names of items must be unique.
 
 Additional labs are focused on more complex ideas, and expect you to have the fundamental knowledge provided in the basics labs.  These can be done in any order.
 

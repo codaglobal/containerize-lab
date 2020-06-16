@@ -67,6 +67,9 @@ typings/
 !.vscode/launch.json
 !.vscode/extensions.json
 
+# skaffold
+skaffold.yaml
+
 # Mac OS
 .DS_Store
 .AppleDouble
